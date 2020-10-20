@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
-
-function App() {
+import {Message} from './Message.js';
+function App(){
+  let [count, setcount] = useState(0);
+  let [time, settime] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className={`box ${time ? 'day' : ''}`}>
+        <Message timer={time}/>
+        <h3>counter value is: {count}</h3>
+        <button onClick={()=>setcount(0)}>Reset Value</button>
+        <button onClick={()=>setcount(++count)}>Increment Value</button>
+        <button onClick={()=>setcount(count >0 ? --count : 0)}>Decrement Value</button><br/><br/>
+        <button onClick={()=>settime(!time)}>Change Time</button>
+      </div>
     </div>
   );
 }
